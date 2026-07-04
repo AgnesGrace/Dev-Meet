@@ -3,27 +3,43 @@
 import { createPost } from '@/actions';
 import {
   Button,
+  ErrorMessage,
   FieldError,
   Form,
   Input,
   Label,
   Popover,
+  Spinner,
   TextArea,
   TextField,
 } from '@heroui/react';
-import { useActionState } from 'react';
+import { FormEvent, startTransition, useActionState } from 'react';
 
-export default function FormCreatePost() {
-  const [formState, formAction, isPending] = useActionState(createPost, {
-    errors: {},
-  });
+interface ICreateFPostProps {
+  nameSlug: string;
+}
+export default function FormCreatePost({ nameSlug }: ICreateFPostProps) {
+  const [formState, formAction, isPending] = useActionState(
+    createPost.bind(null, nameSlug),
+    {
+      errors: {},
+    },
+  );
+
+  function handleCreatePost(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    startTransition(() => formAction(formData));
+  }
   return (
     <div>
       <Popover>
         <Button>Create Post</Button>
         <Popover.Content>
-          <Form
-            action={formAction}
+          <form
+            onSubmit={handleCreatePost}
+            noValidate
             className="w-96 flex flex-col gap-4 p-8 bg-white shadow-sm border border-zinc-200 rounded-2xl "
           >
             <TextField isRequired name="title">
@@ -43,7 +59,18 @@ export default function FormCreatePost() {
               />
               <FieldError></FieldError>
             </TextField>
-          </Form>
+            {formState.errors._form && formState.errors._form.length > 0 && (
+              <ErrorMessage>{formState.errors._form.join(',')}</ErrorMessage>
+            )}
+            <Button
+              type="submit"
+              isPending={isPending}
+              className="flex items-center gap-4 mt-8 w-full cursor-pointer rounded-lg bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2"
+            >
+              <span>Submit</span>
+              {isPending && <Spinner />}
+            </Button>
+          </form>
         </Popover.Content>
       </Popover>
     </div>
