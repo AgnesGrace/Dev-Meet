@@ -1,3 +1,3 @@
 export default function PostDetailsPage() {
-  return <div>post details</div>;
+  return <div>post worked haha</div>;
 }

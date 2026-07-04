@@ -60,7 +60,7 @@ export default function CreateTopicForm() {
               />
               <FieldError>{state.errors.description?.join(', ')}</FieldError>
             </TextField>
-            {state.errors._form?.length && state.errors._form?.length > 0 && (
+            {state.errors._form && state.errors._form?.length > 0 && (
               <ErrorMessage>{state.errors._form.join(',')}</ErrorMessage>
             )}
           </div>

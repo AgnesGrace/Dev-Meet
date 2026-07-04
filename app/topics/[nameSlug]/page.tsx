@@ -14,7 +14,7 @@ export default async function TopicDetailsPage({ params }: TopicDetailsParams) {
         <h1>{nameSlug}</h1>
       </div>
       <aside>
-        <FormCreatePost />
+        <FormCreatePost nameSlug={nameSlug} />
       </aside>
     </section>
   );
