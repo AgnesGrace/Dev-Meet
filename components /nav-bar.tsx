@@ -1,5 +1,7 @@
+'use client';
+
 import { signInWithGithub, signInWithGoogle, signOutUser } from '@/actions';
-import { auth } from '@/auth/auth';
+import { signOut } from 'next-auth/react';
 import {
   Avatar,
   Button,
@@ -11,10 +13,11 @@ import {
   Separator,
 } from '@heroui/react';
 import { EllipsisVertical, LogOut, Pencil } from 'lucide-react';
+import { useSession } from 'next-auth/react';
 
-export default async function Navbar() {
-  const session = await auth();
-  const user = session?.user;
+export default function Navbar() {
+  const session = useSession();
+  const user = session.data?.user;
 
   let userFallbackText;
   if (user && user.name) {
@@ -50,7 +53,7 @@ export default async function Navbar() {
         </div>
 
         <div className="ml-auto flex w-1/4 justify-end">
-          {user ? (
+          {session.status === 'loading' ? null : user?.email ? (
             <div className="flex items-center gap-8">
               <Avatar size="md">
                 <Avatar.Image alt="John Doe" src={user.image || ''} />
@@ -71,7 +74,7 @@ export default async function Navbar() {
                           <Pencil className="size-4 shrink-0 text-muted" />
                         </div>
                         <div className="flex flex-col">
-                          <Label>Edit file</Label>
+                          <Label>Edit </Label>
                           <Description>Make changes</Description>
                         </div>
                       </Dropdown.Item>
@@ -83,9 +86,10 @@ export default async function Navbar() {
                           <LogOut className="size-4 shrink-0 text-danger" />
                         </div>
                         <div className="flex flex-col">
-                          <form action={signOutUser}>
-                            <Button type="submit">Logout</Button>
-                          </form>
+                          <Button onPress={() => signOut({ callbackUrl: '/' })}>
+                            Logout
+                          </Button>
+
                           <Description>Leave for now</Description>
                         </div>
                       </Dropdown.Item>
