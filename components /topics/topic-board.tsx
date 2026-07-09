@@ -31,14 +31,21 @@ export default function TopicBoard({ topics }: TopicBoardProps) {
         className="h-90 w-full overflow-y-auto"
       >
         {(topic) => (
-          <ListBox.Item id={topic.id} textValue="Bob" key={topic.id}>
+          <ListBox.Item
+            id={topic.id}
+            textValue="Bob"
+            key={topic.id}
+            className="dark:hover:text-white"
+          >
             <Avatar size="sm">
               <Avatar.Fallback className="bg-zinc-500 text-white">
                 {topic.slug[0].toUpperCase()}
               </Avatar.Fallback>
             </Avatar>
             <div className="flex flex-col">
-              <Label>{topic.slug[0].toUpperCase() + topic.slug.slice(1)}</Label>
+              <Label className=" dark:text-zinc-500  ">
+                {topic.slug[0].toUpperCase() + topic.slug.slice(1)}
+              </Label>
               <Description>{topic.description.slice(0, 20)}...</Description>
             </div>
           </ListBox.Item>

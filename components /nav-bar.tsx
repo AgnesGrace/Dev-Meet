@@ -14,6 +14,7 @@ import {
 } from '@heroui/react';
 import { EllipsisVertical, LogOut, Pencil } from 'lucide-react';
 import { useSession } from 'next-auth/react';
+import AppThemeToggle from './themes/app-theme-toggle';
 
 export default function Navbar() {
   const session = useSession();
@@ -40,6 +41,7 @@ export default function Navbar() {
           >
             Dev Meet
           </Link>
+          <AppThemeToggle/>
         </div>
 
         <div className="hidden flex-1 justify-center px-8 md:flex">
