@@ -4,3 +4,5 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));

@@ -35,7 +35,7 @@ export default function CreateTopicForm() {
         <form
           onSubmit={handleFormSubmit}
           noValidate
-          className="w-96  rounded-2xl p-8 bg-white shadow-sm border border-zinc-200"
+          className="w-96  rounded-2xl p-8 bg-white dark:text-zinc-900 shadow-sm border border-zinc-200"
         >
           <h2 className="mb-2 text-2xl font-semibold tracking-tight text-zinc-900">
             Add a new Topic
@@ -43,7 +43,7 @@ export default function CreateTopicForm() {
 
           <div className="flex flex-col gap-6">
             <TextField isRequired name="name" isInvalid={!!state.errors.name}>
-              <Label>Name</Label>
+              <Label className="dark:text-zinc-900">Name</Label>
               <Input type="text" />
               <FieldError>{state.errors.name?.join(', ')}</FieldError>
             </TextField>
@@ -53,7 +53,7 @@ export default function CreateTopicForm() {
               name="description"
               isInvalid={!!state.errors.description}
             >
-              <Label>Description</Label>
+              <Label className="dark:text-zinc-900">Description</Label>
               <TextArea
                 id="code"
                 className="resize-y rounded-lg border border-zinc-300 bg-zinc-50 px-3 py-2.5 font-mono text-sm text-zinc-900 placeholder:text-zinc-400 outline-none transition focus:border-zinc-400 focus:bg-white focus:ring-2 focus:ring-zinc-200"
