@@ -26,7 +26,7 @@ const createPostSchema = z.object({
   }),
 });
 export async function createPost(
-  nameSlug,
+  nameSlug: string,
   formState: ICreatePostState,
   formData: FormData,
 ): Promise<ICreatePostState> {

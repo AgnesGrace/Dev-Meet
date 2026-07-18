@@ -18,7 +18,7 @@ export default function AppThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="p-2 rounded-md border border-gray-200 dark:border-gray-800 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50"
+      className="p-2 rounded-md border border-gray-200 dark:border-gray-800  dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50"
       aria-label="Toggle theme"
     >
       {theme === 'dark' ? '🌙' : '☀️'}

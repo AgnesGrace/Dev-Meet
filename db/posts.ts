@@ -3,7 +3,7 @@ import db from '@/db';
 
 export type PostDataType = Post & {
   topic: { slug: string };
-  user: { name: string | null };
+  user: { name: string | null; image: string | null };
   _count: { comments: number };
 };
 

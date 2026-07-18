@@ -34,14 +34,14 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 border-b border-divider bg-background/70 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center px-6">
-        <div className="flex w-1/4 items-center">
+        <div className="flex w-1/4 items-center  gap-4">
           <Link
             href="/"
             className="text-xl font-bold text-foreground no-underline"
           >
             Dev Meet
           </Link>
-          <AppThemeToggle/>
+          <AppThemeToggle />
         </div>
 
         <div className="hidden flex-1 justify-center px-8 md:flex">

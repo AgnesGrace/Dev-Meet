@@ -1,4 +1,3 @@
-import Profile from '@/components /profile';
 import CreateTopicForm from '@/components /topics/create-topic-form';
 import { TopTopic } from '@/components /topics/top-topic';
 import { TopicList } from '@/components /topics/topic-list';
